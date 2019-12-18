@@ -21,7 +21,7 @@ def server_name(url):
 
 # Split a log file into its constituent lines
 def log_to_lines(filename):
-    with open(filename) as file:
+    with open("logs/" + filename) as file:
         fc = file.read()
         lines = fc.splitlines()
     return lines
