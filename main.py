@@ -88,12 +88,11 @@ def rune_elo_calculate(gd, ed):
             target_elo = ed["runes"][str(r)]
         if r <= runes:
             # player wins
-            ed["players"][gd["name"]] = elo_adjust(player_base_elo, target_elo, 10, 1)
+            ed["players"][gd["name"]] = elo_adjust(player_base_elo, target_elo, 5, 1)
             ed["runes"][str(r)] = elo_adjust(target_elo, player_base_elo, 5, 0)
         else:
-            # player loses
-            ed["players"][gd["name"]] = elo_adjust(player_base_elo, target_elo, 5, 0)
-            ed["runes"][str(r)] = elo_adjust(target_elo, player_base_elo, 10, 1)
+            # player loses. It feels wrong for players to actually lose ELO points for failing to get runes - it's a bonus.
+            ed["runes"][str(r)] = elo_adjust(target_elo, player_base_elo, 5, 1)
 
 def write_csv(name, data):
     f = open("output/" + name, "w")
